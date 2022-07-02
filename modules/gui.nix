@@ -43,6 +43,7 @@ with lib;
         mpv
         qt5.qtwayland
         slurp
+        wev
         wf-recorder
         wl-clipboard
         wlr-randr
