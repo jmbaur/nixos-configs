@@ -21,6 +21,8 @@ with lib;
       settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd '${pkgs.systemd}/bin/systemd-cat --identifier=sway sway'";
     };
 
+    programs.wshowkeys.enable = true;
+
     programs.sway = {
       enable = true;
       wrapperFeatures = {
