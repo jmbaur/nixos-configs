@@ -46,6 +46,7 @@ with lib;
         wev
         wf-recorder
         wl-clipboard
+        wlay
         wlr-randr
         xdg-utils
         zathura
