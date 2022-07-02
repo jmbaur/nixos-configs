@@ -5,15 +5,17 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     deploy-rs.url = "github:serokell/deploy-rs";
-    git-get.url = "github:jmbaur/git-get";
-    gobar.url = "github:jmbaur/gobar";
-    gosee.url = "github:jmbaur/gosee";
-    neovim.url = "github:jmbaur/neovim";
     deadnix.url = "github:astro/deadnix";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    git-get.url = "github:jmbaur/git-get";
+    git-get.inputs.nixpkgs.follows = "nixpkgs";
+    gobar.url = "github:jmbaur/gobar";
+    gobar.inputs.nixpkgs.follows = "nixpkgs";
+    gosee.url = "github:jmbaur/gosee";
+    gosee.inputs.nixpkgs.follows = "nixpkgs";
+    neovim.url = "github:jmbaur/neovim";
+    neovim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
