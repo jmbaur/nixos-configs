@@ -18,7 +18,7 @@ with lib;
 
     services.greetd = {
       enable = true;
-      settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd ${pkgs.systemd}/bin/systemd-cat --identifier=sway sway";
+      settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd '${pkgs.systemd}/bin/systemd-cat --identifier=sway sway'";
     };
 
     programs.sway = {
