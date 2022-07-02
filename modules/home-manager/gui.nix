@@ -165,6 +165,9 @@ with lib; {
             "type:touchpad" = touchpadSettings;
             "113:16461:Logitech_K400_Plus" = keyboardSettings // touchpadSettings;
           };
+        assigns = {
+          "7" = [{ title = "pipe:xwayland-mirror"; }];
+        };
         window.commands = [
           {
             criteria.app_id = "^chrome-.*__.*-Default$";
@@ -178,6 +181,7 @@ with lib; {
         floating.criteria = [
           { title = "^(Zoom Cloud Meetings|zoom)$"; }
           { title = "Picture-in-Picture"; }
+          { title = "pipe:xwayland-mirror"; }
         ];
         fonts = {
           names = [ config.programs.kitty.font.name ];
