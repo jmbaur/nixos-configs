@@ -1,3 +1,8 @@
+if ! bw login --check; then
+	echo "ok" | bemenu --prompt "not logged in" --list 1
+	exit 1
+fi
+
 pinentry_output=$(printf "SETPROMPT master password:\nGETPIN\n" | pinentry-bemenu)
 ready=0
 pin=""
@@ -16,7 +21,10 @@ if [ "$pin" == "" ]; then
 	exit 1
 fi
 
-session_token=$(bw unlock "$pin" --raw)
+if ! session_token=$(bw unlock "$pin" --raw); then
+	echo "ok" | bemenu --prompt "bad master password" --list 1
+	exit 1
+fi
 export BW_SESSION=$session_token
 
 readarray -t items < <(bw list items | jq -r '.[] | select(.type == 1) | "\(.id):\(.name) (\(.login.username))"')
