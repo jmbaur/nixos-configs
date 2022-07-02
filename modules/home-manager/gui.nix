@@ -184,7 +184,6 @@ with lib; {
             mod = config.wayland.windowManager.sway.config.modifier;
           in
           {
-            "${config.wayland.windowManager.sway.config.modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
             "${mod}+0" = "workspace number 10";
             "${mod}+1" = "workspace number 1";
             "${mod}+2" = "workspace number 2";
@@ -215,11 +214,13 @@ with lib; {
             "${mod}+Shift+Right" = "move right";
             "${mod}+Shift+Up" = "move up";
             "${mod}+Shift+c" = "reload";
+            "${mod}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
             "${mod}+Shift+h" = "move left";
             "${mod}+Shift+j" = "move down";
             "${mod}+Shift+k" = "move up";
             "${mod}+Shift+l" = "move right";
             "${mod}+Shift+minus" = "move scratchpad";
+            "${mod}+Shift+p" = "${pkgs.bitwarden-bemenu}/bin/bitwarden-bemenu";
             "${mod}+Shift+q" = "kill";
             "${mod}+Shift+r" = "restart";
             "${mod}+Shift+s" = "sticky toggle";
@@ -266,7 +267,6 @@ with lib; {
         };
         startup = [
           # TODO(jared): these have trouble with starting after logout
-          { command = "${pkgs.systemd}/bin/systemctl restart --user mako"; }
           { command = "${pkgs.systemd}/bin/systemctl restart --user clipman"; }
           { command = "${pkgs.systemd}/bin/systemctl restart --user kanshi"; }
         ];
