@@ -231,6 +231,7 @@ with lib; {
             "${mod}+Shift+Left" = "move left";
             "${mod}+Shift+Right" = "move right";
             "${mod}+Shift+Up" = "move up";
+            "${mod}+Shift+b" = "bar mode toggle";
             "${mod}+Shift+c" = "reload";
             "${mod}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
             "${mod}+Shift+h" = "move left";
