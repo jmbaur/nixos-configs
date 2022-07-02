@@ -130,9 +130,8 @@ with lib; {
       Service = {
         Type = "simple";
         ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store";
-        Restart = "always";
       };
-      Install.WantedBy = [ "graphical-session.target" ];
+      Install.WantedBy = [ "sway-session.target" ];
     };
 
     systemd.user.services.yubikey-touch-detector = {
@@ -143,9 +142,8 @@ with lib; {
       Service = {
         Type = "simple";
         ExecStart = "${pkgs.yubikey-touch-detector}/bin/yubikey-touch-detector --libnotify";
-        Restart = "always";
       };
-      Install.WantedBy = [ "graphical-session.target" ];
+      Install.WantedBy = [ "sway-session.target" ];
     };
 
     wayland.windowManager.sway = {
@@ -282,9 +280,8 @@ with lib; {
           xcursor_theme = "${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}";
         };
         startup = [
-          # TODO(jared): these have trouble with starting after logout
-          { command = "${pkgs.systemd}/bin/systemctl restart --user clipman"; }
-          { command = "${pkgs.systemd}/bin/systemctl restart --user kanshi"; }
+          # https://github.com/nix-community/home-manager/issues/2797
+          { command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi"; }
         ];
       };
       extraConfig = ''
