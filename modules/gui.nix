@@ -41,6 +41,7 @@ with lib;
         imv
         kitty
         mpv
+        pulsemixer
         qt5.qtwayland
         slurp
         wev
