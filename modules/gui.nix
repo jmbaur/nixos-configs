@@ -77,6 +77,7 @@ with lib;
     programs.zsh = {
       enable = true;
       interactiveShellInit = "bindkey -e";
+      vteIntegration = true;
     };
 
     services.pcscd.enable = true;
