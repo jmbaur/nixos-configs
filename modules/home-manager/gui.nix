@@ -285,7 +285,6 @@ with lib; {
         ];
       };
       extraConfig = ''
-        title_align center
         include /etc/sway/config.d/*
       '';
     };
