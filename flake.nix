@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     flake-utils.url = "github:numtide/flake-utils";
     deploy-rs.url = "github:serokell/deploy-rs";
     deadnix.url = "github:astro/deadnix";
@@ -21,6 +22,7 @@
   outputs =
     { self
     , nixpkgs
+    , nixpkgs-wayland
     , flake-utils
     , deploy-rs
     , git-get
@@ -44,6 +46,7 @@
           gobar.overlays.default
           gosee.overlays.default
           neovim.overlays.default
+          nixpkgs-wayland.overlays.default
         ];
         extraImports = [ home-manager.nixosModules.home-manager ];
       };
