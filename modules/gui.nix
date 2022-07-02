@@ -36,6 +36,7 @@ with lib;
         gnome-themes-extra
         i3status
         kitty
+        libnotify
         mako
         pulseaudio
         qt5.qtwayland
@@ -43,6 +44,8 @@ with lib;
         swaylock
         wl-clipboard
         wlr-randr
+        xdg-utils
+        zathura
       ];
       extraSessionCommands = ''
         # SDL:
