@@ -34,11 +34,14 @@ with lib;
         clipman
         foot
         gnome-themes-extra
+        grim
         i3status
         imv
         kitty
         mpv
         qt5.qtwayland
+        slurp
+        wf-recorder
         wl-clipboard
         wlr-randr
         xdg-utils
