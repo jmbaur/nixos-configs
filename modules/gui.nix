@@ -40,6 +40,7 @@ with lib;
         i3status
         imv
         kitty
+        mirror-to-x
         mpv
         pulsemixer
         qt5.qtwayland
