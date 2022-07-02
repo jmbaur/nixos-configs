@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.custom.gui;
-  bemenuHeight = 25;
+  bemenuHeight = 30;
 in
 with lib; {
   options.custom.gui = {
