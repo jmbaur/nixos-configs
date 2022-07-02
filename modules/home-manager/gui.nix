@@ -105,19 +105,6 @@ with lib; {
       enable = true;
     };
 
-    systemd.user.services.mako = {
-      Unit = {
-        Description = "Mako notification daemon";
-        PartOf = [ "graphical-session.target" ];
-      };
-      Service = {
-        Type = "simple";
-        ExecStart = "${pkgs.mako}/bin/mako";
-        Restart = "always";
-      };
-      Install.WantedBy = [ "graphical-session.target" ];
-    };
-
     systemd.user.services.clipman = {
       Unit = {
         Description = "Clipboard manager";
