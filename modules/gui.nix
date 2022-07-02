@@ -35,13 +35,10 @@ with lib;
         foot
         gnome-themes-extra
         i3status
+        imv
         kitty
-        libnotify
-        mako
-        pulseaudio
+        mpv
         qt5.qtwayland
-        swayidle
-        swaylock
         wl-clipboard
         wlr-randr
         xdg-utils

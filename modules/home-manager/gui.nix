@@ -16,9 +16,25 @@ with lib; {
       BEMENU_OPTS = "--fn Iosevka --line-height ${toString bemenuHeight}";
     };
 
-    xdg.userDirs = {
-      enable = true;
-      createDirectories = true;
+    xdg = {
+      userDirs = {
+        enable = true;
+        createDirectories = true;
+      };
+      mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+          "application/postscript" = [ "org.pwmt.zathura.desktop" ];
+          "audio/*" = [ "mpv.desktop" ];
+          "image/jpeg" = [ "imv.desktop" ];
+          "image/png" = [ "imv.desktop" ];
+          "text/*" = [ "nvim.desktop" "vim.desktop" ];
+          "video/*" = [ "mpv.desktop" ];
+          "x-scheme-handler/http" = [ "firefox.desktop" ];
+          "x-scheme-handler/https" = [ "firefox.desktop" ];
+        };
+      };
     };
 
     home.pointerCursor = {
