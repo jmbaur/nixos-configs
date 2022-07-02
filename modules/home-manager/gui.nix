@@ -236,7 +236,7 @@ with lib; {
             "${mod}+Shift+k" = "move up";
             "${mod}+Shift+l" = "move right";
             "${mod}+Shift+minus" = "move scratchpad";
-            "${mod}+Shift+p" = "${pkgs.bitwarden-bemenu}/bin/bitwarden-bemenu";
+            "${mod}+Shift+p" = "exec ${pkgs.bitwarden-bemenu}/bin/bitwarden-bemenu";
             "${mod}+Shift+q" = "kill";
             "${mod}+Shift+r" = "restart";
             "${mod}+Shift+s" = "sticky toggle";
