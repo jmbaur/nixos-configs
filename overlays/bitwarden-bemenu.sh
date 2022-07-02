@@ -38,33 +38,7 @@ item_json=$(bw get item "$found")
 password=$(echo "$item_json" | jq -r '.login.password')
 totp=$(echo "$item_json" | jq -r '.login.totp')
 
-options=()
-if [ "$password" != "" ]; then
-	options+=("password")
+wtype "$password"
+if [ "$totp" != "null" ]; then
+	wl-copy --paste-once "$(bw get totp "$found")"
 fi
-if [ "$totp" != "" ]; then
-	options+=("totp")
-fi
-
-case ${#options[@]} in
-	0)
-		exit 1
-		;;
-	1)
-		to_copy=${options[0]}
-		;;
-	*)
-		to_copy=$(printf "%s\n" "${options[@]}" | bemenu --list 10 --prompt "item to copy")
-		;;
-esac
-
-case $to_copy in
-	"password")
-		echo "copied password"
-		wl-copy --paste-once "$(bw get password "$found")"
-		;;
-	"totp")
-		echo "copied totp"
-		wl-copy --paste-once "$(bw get totp "$found")"
-		;;
-esac
