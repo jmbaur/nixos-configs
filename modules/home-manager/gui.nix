@@ -278,10 +278,10 @@ with lib; {
           xcursor_theme = "${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}";
         };
         startup = [
-          # {
-          #   command = "";
-          #   always = true;
-          # }
+          # TODO(jared): these have trouble with starting after logout
+          { command = "${pkgs.systemd}/bin/systemctl restart --user mako"; }
+          { command = "${pkgs.systemd}/bin/systemctl restart --user clipman"; }
+          { command = "${pkgs.systemd}/bin/systemctl restart --user kanshi"; }
         ];
       };
       extraConfig = ''
