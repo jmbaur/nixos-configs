@@ -78,6 +78,7 @@ with lib;
       interactiveShellInit = "bindkey -e";
       vteIntegration = true;
     };
+    environment.systemPackages = [ pkgs.zsh-completions ];
 
     services.pcscd.enable = true;
     services.power-profiles-daemon.enable = true;
