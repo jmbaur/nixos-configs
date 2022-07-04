@@ -187,10 +187,10 @@ with lib; {
               };
             in
             {
-              "type:mouse" = mouseSettings;
-              "type:keyboard" = keyboardSettings;
-              "type:touchpad" = touchpadSettings;
               "113:16461:Logitech_K400_Plus" = keyboardSettings // touchpadSettings;
+              "type:keyboard" = keyboardSettings;
+              "type:pointer" = mouseSettings;
+              "type:touchpad" = touchpadSettings;
             };
           assigns = {
             "7" = [{ title = "pipe:xwayland-mirror"; }];
