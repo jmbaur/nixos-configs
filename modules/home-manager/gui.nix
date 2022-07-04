@@ -177,6 +177,7 @@ with lib; {
           output."*".background = "#222222 solid_color";
           input =
             let
+              mouseSettings = { accel_profile = "flat"; };
               keyboardSettings = { xkb_options = "ctrl:nocaps"; };
               touchpadSettings = {
                 dwt = "enabled";
@@ -186,6 +187,7 @@ with lib; {
               };
             in
             {
+              "type:mouse" = mouseSettings;
               "type:keyboard" = keyboardSettings;
               "type:touchpad" = touchpadSettings;
               "113:16461:Logitech_K400_Plus" = keyboardSettings // touchpadSettings;
