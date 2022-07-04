@@ -67,7 +67,13 @@ with lib;
     services.dbus.enable = true;
     xdg.portal = {
       enable = true;
-      wlr.enable = true;
+      wlr = {
+        enable = true;
+        settings.screencast = {
+          chooser_type = "dmenu";
+          chooser_cmd = "${pkgs.bemenu}/bin/bemenu --prompt=screencast --list 5";
+        };
+      };
     };
 
     fonts.fonts = [ pkgs.iosevka-bin ];

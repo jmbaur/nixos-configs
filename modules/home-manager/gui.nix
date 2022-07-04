@@ -13,7 +13,7 @@ with lib; {
   };
   config = mkIf cfg.enable {
     home.sessionVariables = {
-      BEMENU_OPTS = "--fn Iosevka --line-height ${toString bemenuHeight}";
+      BEMENU_OPTS = "--ignorecase --fn Iosevka --line-height ${toString bemenuHeight}";
     };
 
     xdg = {
