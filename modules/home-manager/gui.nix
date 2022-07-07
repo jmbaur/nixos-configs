@@ -86,20 +86,13 @@ with lib; {
         name = "Iosevka";
         size = 16;
       };
-      settings =
-        let
-          tempus_night = builtins.fetchurl {
-            url = "https://gitlab.com/protesilaos/tempus-themes-kitty/-/raw/master/tempus_night.conf";
-            sha256 = "1kav1d5h4wb6igf2sz9sw89gwpvw3d5qix4jyaan043abbv9vcql";
-          };
-        in
-        {
-          copy_on_select = true;
-          enable_audio_bell = false;
-          include = tempus_night;
-          term = "xterm-256color";
-          update_check_interval = 0;
-        };
+      settings = {
+        copy_on_select = true;
+        enable_audio_bell = false;
+        include = "${pkgs.tempus-themes}/kitty/tempus_night.conf";
+        term = "xterm-256color";
+        update_check_interval = 0;
+      };
     };
 
     programs.mako = {

@@ -17,8 +17,8 @@
     gosee.inputs.nixpkgs.follows = "nixpkgs";
     neovim.url = "github:jmbaur/neovim";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
-    tempus-themes-kitty.url = "gitlab:protesilaos/tempus-themes-kitty";
-    tempus-themes-kitty.flake = false;
+    tempus-themes.url = "gitlab:protesilaos/tempus-themes";
+    tempus-themes.flake = false;
   };
 
   outputs =
@@ -33,6 +33,7 @@
     , neovim
     , deadnix
     , home-manager
+    , tempus-themes
     , ...
     }: flake-utils.lib.eachDefaultSystem
       (system:
@@ -44,6 +45,9 @@
       }) // {
       nixosModules = import ./modules {
         extraOverlays = [
+          (final: prev: {
+            tempus-themes = prev.runCommand "tempus-themes" { src = tempus-themes; } "mkdir -p $out && cp -r . $out";
+          })
           deadnix.overlays.default
           deploy-rs.overlay
           git-get.overlays.default
