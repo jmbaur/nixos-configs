@@ -81,8 +81,10 @@ with lib;
     programs.ssh.startAgent = true;
     programs.zsh = {
       enable = true;
-      interactiveShellInit = "bindkey -e";
-      vteIntegration = true;
+      interactiveShellInit = ''
+        precmd () { print -Pn "\e]0;%~\a" }
+        bindkey -e
+      '';
     };
     environment.systemPackages = [ pkgs.zsh-completions ];
 

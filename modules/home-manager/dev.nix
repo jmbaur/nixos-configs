@@ -98,7 +98,7 @@ with lib; {
         set-option -g renumber-windows on
         set-option -g set-clipboard on
         set-option -g set-titles on
-        set-option -g set-titles-string "#{host}: #{session_path} - #{window_name}"
+        set-option -g set-titles-string "#{pane_current_path}"
         set-option -g status-left-length 75
         set-option -sa terminal-overrides ',xterm-256color:RGB'
       '';
