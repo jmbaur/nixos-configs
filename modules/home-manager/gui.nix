@@ -1,4 +1,4 @@
-{ config, lib, pkgs, globalConfig, ... }:
+{ self, config, lib, pkgs, globalConfig, ... }:
 with lib;
 let
   cfg = config.custom.gui;
@@ -69,7 +69,6 @@ with lib; {
 
     programs.foot = {
       enable = true;
-      server.enable = true;
       settings = {
         main = {
           font = "${config.programs.kitty.font.name}:size=${toString (config.programs.kitty.font.size - 4)}";
@@ -87,12 +86,20 @@ with lib; {
         name = "Iosevka";
         size = 16;
       };
-      settings = {
-        copy_on_select = true;
-        enable_audio_bell = false;
-        term = "xterm-256color";
-        update_check_interval = 0;
-      };
+      settings =
+        let
+          tempus_night = builtins.fetchurl {
+            url = "https://gitlab.com/protesilaos/tempus-themes-kitty/-/raw/master/tempus_night.conf";
+            sha256 = "1kav1d5h4wb6igf2sz9sw89gwpvw3d5qix4jyaan043abbv9vcql";
+          };
+        in
+        {
+          copy_on_select = true;
+          enable_audio_bell = false;
+          include = tempus_night;
+          term = "xterm-256color";
+          update_check_interval = 0;
+        };
     };
 
     programs.mako = {
@@ -215,7 +222,7 @@ with lib; {
             size = 12.0;
             style = "Regular";
           };
-          terminal = "${pkgs.foot}/bin/footclient";
+          terminal = "${pkgs.kitty}/bin/kitty";
           menu = "${pkgs.bemenu}/bin/bemenu-run";
           modifier = "Mod4";
           workspaceAutoBackAndForth = true;

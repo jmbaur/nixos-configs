@@ -17,6 +17,8 @@
     gosee.inputs.nixpkgs.follows = "nixpkgs";
     neovim.url = "github:jmbaur/neovim";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
+    tempus-themes-kitty.url = "gitlab:protesilaos/tempus-themes-kitty";
+    tempus-themes-kitty.flake = false;
   };
 
   outputs =
@@ -31,10 +33,12 @@
     , neovim
     , deadnix
     , home-manager
-    }:
-    flake-utils.lib.eachDefaultSystem
+    , ...
+    }: flake-utils.lib.eachDefaultSystem
       (system:
-      let pkgs = import nixpkgs { inherit system; }; in
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
       {
         formatter = pkgs.nixpkgs-fmt;
       }) // {
