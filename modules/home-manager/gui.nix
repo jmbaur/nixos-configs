@@ -172,7 +172,7 @@ with lib; {
           };
           startup = [
             # https://github.com/nix-community/home-manager/issues/2797
-            { command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart foot.service kanshi.service"; }
+            { command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi.service"; }
           ];
           output."*".background = "#222222 solid_color";
           input =
