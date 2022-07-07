@@ -544,7 +544,8 @@
         "home-manager": "home-manager",
         "neovim": "neovim",
         "nixpkgs": "nixpkgs_6",
-        "nixpkgs-wayland": "nixpkgs-wayland"
+        "nixpkgs-wayland": "nixpkgs-wayland",
+        "tempus-themes": "tempus-themes"
       }
     },
     "rust-analyzer-src": {
@@ -562,6 +563,22 @@
         "ref": "nightly",
         "repo": "rust-analyzer",
         "type": "github"
+      }
+    },
+    "tempus-themes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644225467,
+        "narHash": "sha256-NvPSJ239qFPfMC2tsh6sp4eGFZvcYQtdggHS+PYYFOs=",
+        "owner": "protesilaos",
+        "repo": "tempus-themes",
+        "rev": "12506e4a2d988591ea0432672dbb27440dd5ffea",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "protesilaos",
+        "repo": "tempus-themes",
+        "type": "gitlab"
       }
     },
     "utils": {
