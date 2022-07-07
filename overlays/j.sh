@@ -37,8 +37,7 @@ if ! tmux list-sessions -F "#{session_name}" 2>/dev/null \
 	tmux new-session -d -s "$tmux_session_name" -c "$tmux_session_path"
 fi
 
-if tmux list-sessions -F "#{uid} #{pane_tty}" 2>/dev/null \
-	| grep --silent "^$(id --user) $(tty)$"; then
+if tmux list-sessions 2>/dev/null | grep --silent "attached"; then
 	tmux switch-client -t "$tmux_session_name"
 else
 	tmux attach-session -t "$tmux_session_name"
