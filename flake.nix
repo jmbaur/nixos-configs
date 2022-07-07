@@ -46,7 +46,11 @@
       nixosModules = import ./modules {
         extraOverlays = [
           (final: prev: {
-            tempus-themes = prev.runCommand "tempus-themes" { src = tempus-themes; } "mkdir -p $out && cp -r . $out";
+            tempus-themes = prev.stdenv.mkDerivation {
+              name = "tempus-themes";
+              src = tempus-themes;
+              installPhase = "mkdir -p $out && cp -r . $out";
+            };
           })
           deadnix.overlays.default
           deploy-rs.overlay
