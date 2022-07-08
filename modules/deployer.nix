@@ -5,14 +5,15 @@ in
 with lib;
 {
   options.custom.deployer = {
-    enable = mkEnableOption
-      "Enable this machine to deploy to other machines";
+    enable = mkEnableOption "this machine to deploy to other machines";
     authorizedKeyFiles = mkOption {
       type = types.listOf types.path;
       default = [ ];
     };
   };
   config = mkIf cfg.enable {
+    # Must be able to bootstrap the deployer, allow SSH access to the
+    # deployer by personal keys.
     assertions = [{
       assertion = (cfg.authorizedKeyFiles != [ ]);
       message = "No authorized keys configured for deployer";
@@ -22,8 +23,6 @@ with lib;
       isNormalUser = true;
       description = "Deployer";
       packages = [ pkgs.deploy-rs.deploy-rs ];
-      # Must be able to bootstrap the deployer, allow SSH access to the
-      # deployer by personal keys.
       openssh.authorizedKeys.keyFiles = cfg.authorizedKeyFiles;
     };
     system.activationScripts.deployer.text = ''
