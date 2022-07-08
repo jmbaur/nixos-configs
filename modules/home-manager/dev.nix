@@ -70,8 +70,10 @@ with lib; {
         options.syntax-theme = config.programs.bat.config.theme;
       };
       extraConfig = {
-        pull.rebase = true;
+        "credential \"https://gist.github.com\"".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+        "credential \"https://github.com\"".helper = "!${pkgs.gh}/bin/gh auth git-credential";
         init.defaultBranch = "main";
+        pull.rebase = true;
       };
       attributes = [ ];
       ignores = [ "*~" "*.swp" ];
