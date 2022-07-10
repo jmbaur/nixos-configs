@@ -70,6 +70,24 @@ with lib; {
       };
     };
 
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        selection.save_to_clipboard = false;
+        font =
+          let
+            fontAttrs = { family = config.programs.kitty.font.name; };
+          in
+          {
+            normal = fontAttrs;
+            bold = fontAttrs;
+            italic = fontAttrs;
+            bold_italic = fontAttrs;
+            size = config.programs.kitty.font.size;
+          };
+      };
+    };
+
     programs.foot = {
       enable = true;
       settings = {
