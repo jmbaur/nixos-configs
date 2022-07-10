@@ -73,7 +73,7 @@ with lib; {
     programs.alacritty = {
       enable = true;
       settings = {
-        selection.save_to_clipboard = false;
+        selection.save_to_clipboard = true;
         font =
           let
             fontAttrs = { family = config.programs.kitty.font.name; };
