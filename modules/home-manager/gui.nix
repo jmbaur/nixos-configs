@@ -233,7 +233,7 @@ with lib; {
             size = 12.0;
             style = "Regular";
           };
-          terminal = "${pkgs.kitty}/bin/kitty";
+          terminal = "${pkgs.alacritty}/bin/alacritty";
           menu = "${pkgs.bemenu}/bin/bemenu-run";
           modifier = "Mod4";
           workspaceAutoBackAndForth = true;
