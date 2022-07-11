@@ -16,6 +16,17 @@ with lib;
       loader.systemd-boot.configurationLimit = mkDefault 50;
     };
 
+    services.openssh = mkIf isNotContainer {
+      enable = true;
+      passwordAuthentication = lib.mkDefault false;
+      permitRootLogin = lib.mkDefault "prohibit-password";
+      listenAddresses = lib.mkDefault [
+        { addr = "127.0.0.1"; port = 22; }
+        { addr = "[::1]"; port = 22; }
+      ];
+    };
+
+
     nix = {
       settings.trusted-users = [ "@wheel" ];
       gc = mkIf isNotContainer {

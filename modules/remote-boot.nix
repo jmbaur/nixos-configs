@@ -25,12 +25,10 @@ with lib;
     };
   };
   config = mkIf cfg.enable {
-    assertions = [
-      # {
-      #   assertion = TODO(jared): search for network kernel modules in boot.initrd.availableKernelModules;
-      #   message = "Must include kernel module for network card in boot.initrd.availableKernelModules option.";
-      # }
-    ];
+    assertions = [{
+      assertion = services.openssh.enable == true;
+      message = "OpenSSH must be enabled on host";
+    }];
     boot = {
       kernelParams = [
         (if cfg.interface == null then
@@ -45,9 +43,6 @@ with lib;
         '';
         ssh = {
           enable = true;
-          # TODO(jared): Dependent on openssh being enabled. May need to create
-          # separate keys outside of what is created from the openssh nixos
-          # module.
           hostKeys = [ "/etc/ssh/ssh_host_ed25519_key" "/etc/ssh/ssh_host_rsa_key" ];
           authorizedKeys = lib.flatten (map
             (file:

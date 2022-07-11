@@ -19,9 +19,8 @@ with lib;
     }];
 
     services.openssh = {
-      enable = mkForce true;
-      passwordAuthentication = mkForce false;
-      permitRootLogin = "prohibit-password";
+      enable = true;
+      listenAddresses = [ ];
     };
 
     users.users.root.openssh.authorizedKeys.keyFiles = cfg.authorizedKeyFiles;
