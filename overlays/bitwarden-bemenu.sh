@@ -3,7 +3,7 @@ if ! bw login --check; then
 	exit 1
 fi
 
-pinentry_output=$(printf "SETPROMPT master password:\nGETPIN\n" | pinentry-bemenu)
+pinentry_output=$(printf "SETPROMPT master password\nGETPIN\n" | pinentry-bemenu)
 ready=0
 pin=""
 for line in $pinentry_output; do
