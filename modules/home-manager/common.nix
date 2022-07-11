@@ -29,7 +29,6 @@ with lib; {
       rtorrent
       sl
       smartmontools
-      speedtest-cli
       sshfs
       stow
       tailscale
