@@ -93,7 +93,6 @@ with lib; {
       settings = {
         main = {
           font = "${config.programs.kitty.font.name}:size=${toString (config.programs.kitty.font.size - 4)}";
-          include = "${pkgs.foot.src}/themes/tempus-night";
           selection-target = "clipboard";
           term = "xterm-256color";
         };
@@ -110,7 +109,6 @@ with lib; {
       settings = {
         copy_on_select = true;
         enable_audio_bell = false;
-        include = "${pkgs.tempus-themes}/kitty/tempus_night.conf";
         term = "xterm-256color";
         update_check_interval = 0;
       };
