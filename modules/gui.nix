@@ -1,13 +1,6 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.custom.gui;
-  swayPackage = pkgs.sway.override {
-    extraSessionCommands = config.programs.sway.extraSessionCommands;
-    extraOptions = config.programs.sway.extraOptions;
-    withBaseWrapper = config.programs.sway.wrapperFeatures.base;
-    withGtkWrapper = config.programs.sway.wrapperFeatures.gtk;
-    isNixOS = true;
-  };
 in
 with lib;
 {
@@ -33,7 +26,7 @@ with lib;
 
     services.greetd = {
       enable = true;
-      settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd '${pkgs.systemd}/bin/systemd-cat --identifier=sway ${swayPackage}/bin/sway'";
+      settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd '${pkgs.systemd}/bin/systemd-cat --identifier=sway sway'";
     };
 
     programs.wshowkeys.enable = true;
