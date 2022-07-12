@@ -6,10 +6,6 @@
     j = prev.callPackage ./j.nix { };
     lib = prev.lib // { mkWebApp = prev.callPackage ./mkWebApp.nix { }; };
     mirror-to-x = prev.callPackage ./mirror-to-x.nix { };
-    outlook-webapp = final.lib.mkWebApp "outlook" "https://outlook.com";
-    slack-webapp = final.lib.mkWebApp "slack" "https://app.slack.com/client";
-    spotify-webapp = final.lib.mkWebApp "spotify" "https://open.spotify.com";
-    teams-webapp = final.lib.mkWebApp "teams" "https://teams.microsoft.com";
     v4l-show = prev.callPackage ./v4l-show.nix { };
     zf = prev.callPackage ./zf.nix { };
   };
