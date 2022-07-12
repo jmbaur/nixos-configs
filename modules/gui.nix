@@ -66,8 +66,8 @@ with lib;
       ];
       extraSessionCommands = ''
         # vulkan renderer support
-        export WLR_RENDERER=vulkan
-        export VK_LAYER_PATH=${pkgs.vulkan-validation-layers}/result/share/vulkan/explicit_layer.d
+        # export WLR_RENDERER=vulkan
+        # export VK_LAYER_PATH=${pkgs.vulkan-validation-layers}/result/share/vulkan/explicit_layer.d
         # SDL:
         export SDL_VIDEODRIVER=wayland
         # QT (needs qt5.qtwayland in systemPackages):
