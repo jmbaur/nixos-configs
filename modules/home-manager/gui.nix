@@ -73,6 +73,7 @@ with lib; {
     programs.alacritty = {
       enable = true;
       settings = {
+        mouse.hide_when_typing = true;
         selection.save_to_clipboard = true;
         font =
           let
@@ -96,6 +97,7 @@ with lib; {
           selection-target = "clipboard";
           term = "xterm-256color";
         };
+        mouse.hide-when-typing = "yes";
       };
     };
 
@@ -184,10 +186,7 @@ with lib; {
           mod = config.wayland.windowManager.sway.config.modifier;
         in
         {
-          seat."*" = {
-            hide_cursor = "when-typing enable";
-            xcursor_theme = "${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}";
-          };
+          seat."*".xcursor_theme = "${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}";
           startup = [
             # https://github.com/nix-community/home-manager/issues/2797
             { command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi.service"; }
