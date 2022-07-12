@@ -223,7 +223,7 @@ with lib; {
           ];
           floating.criteria = [
             { title = "^(Zoom Cloud Meetings|zoom)$"; }
-            { title = "Picture-in-Picture"; }
+            { title = "[pP]icture.in.[pP]icture"; }
             { title = "pipe:xwayland-mirror"; }
           ];
           fonts = {
