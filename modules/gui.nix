@@ -49,6 +49,7 @@ with lib;
         bemenu
         brightnessctl
         clipman
+        ffmpeg-full
         foot
         gnome-themes-extra
         grim
@@ -57,13 +58,15 @@ with lib;
         kitty
         mirror-to-x
         mpv
+        obs-studio
         pulsemixer
         qt5.qtwayland
         slurp
+        v4l-show
+        v4l-utils
         wev
         wf-recorder
         wl-clipboard
-        wlay
         wlr-randr
         xdg-utils
         zathura
