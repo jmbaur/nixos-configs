@@ -177,6 +177,8 @@ with lib; {
 
     wayland.windowManager.sway = {
       enable = true;
+      inherit (globalConfig.programs.sway)
+        extraSessionCommands extraOptions wrapperFeatures;
       config =
         let
           mod = config.wayland.windowManager.sway.config.modifier;
