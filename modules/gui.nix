@@ -13,6 +13,14 @@ with lib;
 {
   options.custom.gui.enable = mkEnableOption "GUI config";
   config = lib.mkIf cfg.enable {
+    boot = {
+      extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+      kernelModules = [ "v4l2loopback" ];
+      extraModprobeConfig = ''
+        options v4l2loopback exclusive_caps=1 card_label=VirtualVideoDevice
+      '';
+    };
+
     hardware.pulseaudio.enable = lib.mkForce false;
     security.rtkit.enable = true;
     services.pipewire = {
