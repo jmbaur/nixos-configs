@@ -1,4 +1,4 @@
-{ self, config, lib, pkgs, globalConfig, ... }:
+{ config, lib, pkgs, globalConfig, ... }:
 with lib;
 let
   cfg = config.custom.gui;

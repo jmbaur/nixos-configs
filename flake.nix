@@ -37,11 +37,13 @@
       let
         pkgs = import nixpkgs { inherit system; };
       in
-      {
-        formatter = pkgs.nixpkgs-fmt;
-      }) // {
-      nixosModules = import ./modules {
-        extraOverlays = [
+      { formatter = pkgs.nixpkgs-fmt; }) // {
+      nixosModules.default = {
+        imports = [
+          home-manager.nixosModules.home-manager
+          ./modules
+        ];
+        nixpkgs.overlays = [
           deadnix.overlays.default
           deploy-rs.overlay
           git-get.overlays.default
@@ -49,9 +51,9 @@
           gosee.overlays.default
           neovim.overlays.default
           nixpkgs-wayland.overlays.default
+          self.overlays.default
         ];
-        extraImports = [ home-manager.nixosModules.home-manager ];
       };
-      overlays = import ./overlays;
+      overlays.default = import ./overlays;
     };
 }
