@@ -1,8 +1,13 @@
 { writeShellScriptBin
+, lib
 , google-chrome
-, commandLineArgs ? "--enable-features=UseOzonePlatform,WebRTCPipeWireCapturer,SystemNotifications --ozone-platform=wayland"
+, enableWayland ? true
+, enablePipewire ? true
 }:
 let
+  commandLineArgs = "--enable-features=SystemNotifications"
+    + lib.optionalString enablePipewire ",WebRTCPipeWireCapturer"
+    + lib.optionalString enableWayland " --ozone-platform-hint=auto";
   chrome = google-chrome.override { inherit commandLineArgs; };
 in
 name: url: writeShellScriptBin name ''
