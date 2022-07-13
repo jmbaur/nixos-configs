@@ -275,6 +275,7 @@ with lib; {
             "${mod}+Control+space" = "exec ${pkgs.mako}/bin/makoctl dismiss --all";
             "${mod}+Down" = "focus down";
             "${mod}+Left" = "focus left";
+            "${mod}+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save window";
             "${mod}+Return" = "exec ${config.wayland.windowManager.sway.config.terminal}";
             "${mod}+Right" = "focus right";
             "${mod}+Shift+0" = "move container to workspace number 10";
@@ -289,6 +290,7 @@ with lib; {
             "${mod}+Shift+9" = "move container to workspace number 9";
             "${mod}+Shift+Down" = "move down";
             "${mod}+Shift+Left" = "move left";
+            "${mod}+Shift+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save area";
             "${mod}+Shift+Right" = "move right";
             "${mod}+Shift+Up" = "move up";
             "${mod}+Shift+b" = "bar mode toggle";
@@ -322,6 +324,7 @@ with lib; {
             "${mod}+space" = "focus mode_toggle";
             "${mod}+v" = "split v";
             "${mod}+w" = "layout tabbed";
+            "Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save output";
             "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5% && ${pkgs.pulseaudio}/bin/pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $XDG_RUNTIME_DIR/wob.sock";
             "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
             "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle && (${pkgs.pamixer}/bin/pamixer --get-mute && echo 0 > $XDG_RUNTIME_DIR/wob.sock) || ${pkgs.pamixer}/bin/pamixer --get-volume > $XDG_RUNTIME_DIR/wob.sock";
