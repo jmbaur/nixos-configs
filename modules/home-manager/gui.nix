@@ -118,12 +118,12 @@ with lib; {
 
     programs.mako = {
       enable = true;
+      anchor = "top-right";
       defaultTimeout = 5000;
       font = "${toString config.wayland.windowManager.sway.config.fonts.names} ${toString config.wayland.windowManager.sway.config.fonts.size}";
-      extraConfig = ''
-        [mode=do-not-disturb]
-        invisible=1
-      '';
+      height = 300;
+      icons = false;
+      width = 300;
     };
 
     services.swayidle =
