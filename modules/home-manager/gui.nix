@@ -148,11 +148,11 @@ with lib; {
       provider = "geoclue2";
     };
 
-    systemd.user.services.kanshi.Unit = {
-      PartOf = lib.mkForce [ ];
-      Requires = lib.mkForce [ ];
-      BindsTo = [ "sway-session.target" ];
-    };
+    # systemd.user.services.kanshi.Unit = {
+    #   PartOf = lib.mkForce [ ];
+    #   Requires = lib.mkForce [ ];
+    #   BindsTo = [ "sway-session.target" ];
+    # };
     services.kanshi.enable = true;
 
     systemd.user.services.clipman = {
@@ -164,7 +164,7 @@ with lib; {
       };
       Service = {
         Type = "simple";
-        Environment = [ "PATH=${makeBinPath [ pkgs.wl-clipboard ]}" ];
+        Environment = [ "PATH=${makeBinPath [ pkgs.bash pkgs.wl-clipboard ]}" ];
         ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store";
       };
       Install.WantedBy = [ "sway-session.target" ];
@@ -275,7 +275,7 @@ with lib; {
             "${mod}+Shift+Up" = "move up";
             "${mod}+Shift+b" = "bar mode toggle";
             "${mod}+Shift+c" = "reload";
-            "${mod}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
+            "${mod}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' '${pkgs.systemd}/bin/systemctl --user stop sway-session.target && ${pkgs.sway}/bin/swaymsg exit'";
             "${mod}+Shift+h" = "move left";
             "${mod}+Shift+j" = "move down";
             "${mod}+Shift+k" = "move up";
@@ -337,6 +337,10 @@ with lib; {
             '';
           }];
         };
+      swaynag = {
+        enable = true;
+        settings."<config>".font = "${toString config.wayland.windowManager.sway.config.fonts.names} ${toString config.wayland.windowManager.sway.config.fonts.size}";
+      };
       extraConfig = ''
         include /etc/sway/config.d/*
       '';
