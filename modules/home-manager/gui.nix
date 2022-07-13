@@ -148,39 +148,34 @@ with lib; {
       provider = "geoclue2";
     };
 
-    # systemd.user.services.kanshi.Unit = {
-    #   PartOf = lib.mkForce [ ];
-    #   Requires = lib.mkForce [ ];
-    #   BindsTo = [ "sway-session.target" ];
-    # };
     services.kanshi.enable = true;
 
     systemd.user.services.clipman = {
       Unit = {
         Description = "Clipboard manager";
         Documentation = "man:clipman(1)";
-        BindsTo = [ "sway-session.target" ];
-        After = [ "sway-session.target" ];
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target";
       };
       Service = {
         Type = "simple";
         Environment = [ "PATH=${makeBinPath [ pkgs.bash pkgs.wl-clipboard ]}" ];
         ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store";
       };
-      Install.WantedBy = [ "sway-session.target" ];
+      Install.WantedBy = [ "graphical-session.target" ];
     };
 
     systemd.user.services.yubikey-touch-detector = {
       Unit = {
         Description = "Yubikey Touch Detector";
-        BindsTo = [ "sway-session.target" ];
-        After = [ "sway-session.target" ];
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target";
       };
       Service = {
         Type = "simple";
         ExecStart = "${pkgs.yubikey-touch-detector}/bin/yubikey-touch-detector --libnotify";
       };
-      Install.WantedBy = [ "sway-session.target" ];
+      Install.WantedBy = [ "graphical-session.target" ];
     };
 
     wayland.windowManager.sway = {

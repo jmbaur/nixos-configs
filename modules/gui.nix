@@ -97,6 +97,7 @@ with lib;
     };
     environment.systemPackages = [ pkgs.zsh-completions ];
 
+    services.avahi.enable = true;
     services.pcscd.enable = true;
     services.power-profiles-daemon.enable = true;
     services.printing.enable = true;
