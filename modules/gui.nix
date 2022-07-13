@@ -7,6 +7,7 @@ with lib;
   options.custom.gui.enable = mkEnableOption "GUI config";
   config = lib.mkIf cfg.enable {
     boot = {
+      kernelParams = [ "quiet" "loglevel=3" ];
       extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
       kernelModules = [ "v4l2loopback" ];
       extraModprobeConfig = ''
@@ -26,7 +27,7 @@ with lib;
 
     services.greetd = {
       enable = true;
-      settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd '${pkgs.systemd}/bin/systemd-cat --identifier=sway sway'";
+      settings.default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd 'systemd-cat --identifier=sway sway'";
     };
 
     programs.wshowkeys.enable = true;
