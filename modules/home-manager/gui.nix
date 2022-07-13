@@ -178,6 +178,29 @@ with lib; {
       Install.WantedBy = [ "sway-session.target" ];
     };
 
+    systemd.user.sockets.wob = {
+      Socket = {
+        ListenFIFO = "%t/wob.sock";
+        SocketMode = "0600";
+      };
+      Install.WantedBy = [ "sockets.target" ];
+    };
+
+    systemd.user.services.wob = {
+      Unit = {
+        Description = "A lightweight overlay volume/backlight/progress/anything bar for Wayland";
+        Documentation = "man:wob(1)";
+        PartOf = "sway-session.target";
+        After = "sway-session.target";
+        ConditionEnvironment = "WAYLAND_DISPLAY";
+      };
+      Service = {
+        StandardInput = "socket";
+        ExecStart = "${pkgs.wob}/bin/wob";
+      };
+      Install.WantedBy = [ "sway-session.target" ];
+    };
+
     wayland.windowManager.sway = {
       enable = true;
       inherit (globalConfig.programs.sway)
@@ -269,7 +292,7 @@ with lib; {
             "${mod}+Shift+Right" = "move right";
             "${mod}+Shift+Up" = "move up";
             "${mod}+Shift+b" = "bar mode toggle";
-            "${mod}+Shift+c" = "reload";
+            "${mod}+Shift+c" = "exec ${pkgs.wl-color-picker}/bin/wl-color-picker";
             "${mod}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' '${pkgs.systemd}/bin/systemctl --user stop sway-session.target && ${pkgs.sway}/bin/swaymsg exit'";
             "${mod}+Shift+h" = "move left";
             "${mod}+Shift+j" = "move down";
@@ -278,7 +301,7 @@ with lib; {
             "${mod}+Shift+minus" = "move scratchpad";
             "${mod}+Shift+p" = "exec ${pkgs.bitwarden-bemenu}/bin/bitwarden-bemenu";
             "${mod}+Shift+q" = "kill";
-            "${mod}+Shift+r" = "restart";
+            "${mod}+Shift+r" = "reload";
             "${mod}+Shift+s" = "sticky toggle";
             "${mod}+Shift+space" = "floating toggle";
             "${mod}+Tab" = "workspace back_and_forth";
@@ -299,12 +322,12 @@ with lib; {
             "${mod}+space" = "focus mode_toggle";
             "${mod}+v" = "split v";
             "${mod}+w" = "layout tabbed";
-            "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5% && ${pkgs.pulseaudio}/bin/pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $XDG_RUNTIME_DIR/wob.sock";
             "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
             "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-            "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-            "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+            "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5% && ${pkgs.pulseaudio}/bin/pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $XDG_RUNTIME_DIR/wob.sock";
+            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > $XDG_RUNTIME_DIR/wob.sock";
+            "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5% | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > $XDG_RUNTIME_DIR/wob.sock";
           };
           modes = {
             resize = {
