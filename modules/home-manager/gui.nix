@@ -148,7 +148,10 @@ with lib; {
       provider = "geoclue2";
     };
 
-    services.kanshi.enable = true;
+    services.kanshi = {
+      enable = true;
+      systemdTarget = "graphical-session.target";
+    };
 
     systemd.user.services.clipman = {
       Unit = {
