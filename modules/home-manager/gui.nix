@@ -148,18 +148,23 @@ with lib; {
       provider = "geoclue2";
     };
 
-    services.kanshi = {
-      enable = true;
+    systemd.user.services.kanshi.Unit = {
+      PartOf = lib.mkForce [ ];
+      Requires = lib.mkForce [ ];
+      BindsTo = [ "sway-session.target" ];
     };
+    services.kanshi.enable = true;
 
     systemd.user.services.clipman = {
       Unit = {
         Description = "Clipboard manager";
         Documentation = "man:clipman(1)";
-        PartOf = [ "graphical-session.target" ];
+        BindsTo = [ "sway-session.target" ];
+        After = [ "sway-session.target" ];
       };
       Service = {
         Type = "simple";
+        Environment = [ "PATH=${makeBinPath [ pkgs.wl-clipboard ]}" ];
         ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store";
       };
       Install.WantedBy = [ "sway-session.target" ];
@@ -168,7 +173,8 @@ with lib; {
     systemd.user.services.yubikey-touch-detector = {
       Unit = {
         Description = "Yubikey Touch Detector";
-        PartOf = [ "graphical-session.target" ];
+        BindsTo = [ "sway-session.target" ];
+        After = [ "sway-session.target" ];
       };
       Service = {
         Type = "simple";
@@ -187,10 +193,7 @@ with lib; {
         in
         {
           seat."*".xcursor_theme = "${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}";
-          startup = [
-            # https://github.com/nix-community/home-manager/issues/2797
-            { command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi.service"; }
-          ];
+          startup = [ ];
           output."*".background = "#222222 solid_color";
           input =
             let
