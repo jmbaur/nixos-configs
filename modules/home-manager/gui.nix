@@ -72,6 +72,7 @@ with lib; {
     programs.alacritty = {
       enable = true;
       settings = {
+        env.TERM = "xterm-256color";
         mouse.hide_when_typing = true;
         selection.save_to_clipboard = true;
         font =
