@@ -6,12 +6,11 @@ let
   lockerCommand = "${pkgs.swaylock}/bin/swaylock -f -c 222222";
 in
 with lib; {
-  options.custom.gui = {
-    enable = mkOption {
-      type = types.bool;
-      default = globalConfig.custom.gui.enable;
-    };
+  options.custom.gui.enable = mkOption {
+    type = types.bool;
+    default = globalConfig.custom.gui.enable;
   };
+
   config = mkIf cfg.enable {
     programs.bash.enable = true;
 
@@ -132,6 +131,7 @@ with lib; {
         events = [
           { event = "before-sleep"; command = lockerCommand; }
           { event = "lock"; command = lockerCommand; }
+          { event = "after-resume"; command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'"; }
         ];
         timeouts = [
           { timeout = 300; command = lockerCommand; }
@@ -140,7 +140,12 @@ with lib; {
             command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
             resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
           }
-        ];
+        ]
+        ++
+        lib.optional config.custom.laptop.enable {
+          timeout = 900;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        };
       };
 
     services.gammastep = {

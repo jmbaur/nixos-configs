@@ -6,6 +6,7 @@
     ./dev.nix
     ./gui.nix
     ./home-manager
+    ./laptop.nix
     ./remote-boot.nix
   ];
 }
