@@ -35,9 +35,15 @@
     }: flake-utils.lib.eachDefaultSystem
       (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ self.overlays.default ];
+        };
       in
-      { formatter = pkgs.nixpkgs-fmt; }) // {
+      {
+        formatter = pkgs.nixpkgs-fmt;
+        packages.mirror-to-x = pkgs.mirror-to-x;
+      }) // {
       nixosModules.default = {
         imports = [
           home-manager.nixosModules.home-manager
