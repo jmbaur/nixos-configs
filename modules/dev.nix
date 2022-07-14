@@ -22,6 +22,14 @@ with lib;
       dockerCompat = true;
       defaultNetwork.dnsname.enable = true;
     };
+
+    # allow docker to use podman shell completions
+    programs.bash.interactiveShellInit = ''
+      complete -o default -F __start_podman docker
+    '';
+    programs.zsh.interactiveShellInit = ''
+      compdef docker=podman
+    '';
   };
 
 }

@@ -29,8 +29,7 @@ with lib; {
       mob
       mosh
       neovim
-      nix-prefetch-docker
-      nix-prefetch-git
+      nix-prefetch-scripts
       nix-tree
       nixos-generators
       nload
