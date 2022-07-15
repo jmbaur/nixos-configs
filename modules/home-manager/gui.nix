@@ -154,7 +154,7 @@ with lib; {
       provider = "geoclue2";
     };
 
-    services.kanshi.enable = true;
+    services.kanshi.enable = config.custom.laptop.enable;
 
     systemd.user.services.clipman = {
       Unit = {
@@ -368,7 +368,16 @@ with lib; {
         enable = true;
         settings."<config>".font = "${toString config.wayland.windowManager.sway.config.fonts.names} ${toString config.wayland.windowManager.sway.config.fonts.size}";
       };
-      extraConfig = ''
+      extraConfig = lib.optionalString
+        (
+          config.custom.laptop.enable &&
+            config.services.kanshi.enable &&
+            config.services.kanshi.profiles != { }
+        ) ''
+        set $laptop eDP-1
+        bindswitch --reload --locked lid:on output $laptop disable
+        bindswitch --reload --locked lid:off output $laptop enable
+      '' + ''
         include /etc/sway/config.d/*
       '';
     };
