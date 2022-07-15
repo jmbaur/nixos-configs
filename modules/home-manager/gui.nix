@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.custom.gui;
   bemenuHeight = 30;
-  lockerCommand = "${pkgs.swaylock}/bin/swaylock -f -c 222222";
+  lockerCommand = "${pkgs.swaylock}/bin/swaylock --daemonize --indicator-caps-lock --show-keyboard-layout --image ${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath} --scaling fill";
 in
 with lib; {
   options.custom.gui.enable = mkOption {
@@ -218,7 +218,7 @@ with lib; {
         {
           seat."*".xcursor_theme = "${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}";
           startup = [ ];
-          output."*".background = "#222222 solid_color";
+          output."*".background = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath} fill";
           input =
             let
               mouseSettings = { accel_profile = "flat"; };
