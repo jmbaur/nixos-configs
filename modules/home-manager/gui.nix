@@ -165,7 +165,7 @@ with lib; {
       };
       Service = {
         Type = "simple";
-        Environment = [ "PATH=${makeBinPath [ pkgs.wl-clipboard ]}" ];
+        Environment = [ "WAYLAND_DEBUG=1" "PATH=${makeBinPath [ pkgs.wl-clipboard ]}" ];
         ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --type text/plain --watch ${pkgs.clipman}/bin/clipman store";
       };
       Install.WantedBy = [ "sway-session.target" ];
