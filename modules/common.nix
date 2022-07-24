@@ -96,6 +96,8 @@ with lib;
               set noswapfile
               set number
               set path=**/*
+              set splitbelow
+              set splitright
               syntax enable
             '';
             packages.myVimPackage = with pkgs.vimPlugins; {
