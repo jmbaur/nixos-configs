@@ -101,10 +101,16 @@ with lib;
               start = [
                 jared-vim
                 vim-commentary
+                vim-dirvish
+                vim-eunuch
+                vim-fugitive
                 vim-nix
+                vim-repeat
                 vim-rsi
                 vim-sensible
+                vim-sleuth
                 vim-surround
+                vim-unimpaired
               ];
               opt = [ ];
             };
