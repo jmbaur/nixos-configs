@@ -93,6 +93,7 @@ with lib;
               set colorcolumn=80
               set hidden
               set hlsearch
+              set noswapfile
               set number
               set path=**/*
               syntax enable
