@@ -73,6 +73,7 @@ with lib; {
         "credential \"https://github.com\"".helper = "!${pkgs.gh}/bin/gh auth git-credential";
         init.defaultBranch = "main";
         pull.rebase = true;
+        push.autoSetupRemote = true;
       };
       attributes = [ ];
       ignores = [ "*~" "*.swp" ];
