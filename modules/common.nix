@@ -94,6 +94,7 @@ with lib;
               set hidden
               set hlsearch
               set noswapfile
+              set nowrap
               set number
               set path=**/*
               set splitbelow
