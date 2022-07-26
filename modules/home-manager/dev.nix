@@ -50,6 +50,7 @@ with lib; {
       tokei
       xsv
       ydiff
+      yj
       zeal
       zf
       zoxide
