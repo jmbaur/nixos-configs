@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 if ! bw login --check; then
 	echo "ok" | bemenu --prompt "not logged in" --list 1
 	exit 1

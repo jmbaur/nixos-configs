@@ -6,5 +6,5 @@
 writeShellApplication {
   name = "j";
   runtimeInputs = [ fd fzf tmux ];
-  text = builtins.readFile ./j.sh;
+  text = builtins.readFile ./j.bash;
 }
