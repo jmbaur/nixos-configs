@@ -26,6 +26,7 @@ with lib; {
       htmlq
       j
       jq
+      macgen
       mob
       mosh
       neovim
