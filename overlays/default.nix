@@ -6,6 +6,7 @@ final: prev: {
   mirror-to-x = prev.callPackage ./mirror-to-x.nix { };
   v4l-show = prev.callPackage ./v4l-show.nix { };
   zf = prev.callPackage ./zf.nix { };
+  macgen = prev.callPackage ./macgen.nix { };
 
   discord-webapp = final.mkWebApp "discord" "https://discord.com/app";
   outlook-webapp = final.mkWebApp "outlook" "https://outlook.com";
