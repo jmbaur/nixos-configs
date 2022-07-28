@@ -34,7 +34,6 @@ with lib;
         precmd () { print -Pn "\e]0;%~\a" }
       '';
     };
-    environment.systemPackages = [ pkgs.zsh-completions ];
 
     nix = {
       settings.trusted-users = [ "@wheel" ];
@@ -76,6 +75,7 @@ with lib;
         tcpdump
         traceroute
         usbutils
+        zsh-completions
       ];
 
       loginShellInit = mkIf (!config.custom.gui.enable) ''
