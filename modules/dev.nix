@@ -13,6 +13,8 @@ with lib;
       keep-derivations = true
     '';
 
+    programs.ssh.startAgent = true;
+
     virtualisation.containers = {
       enable = true;
       containersConf.settings.engine.detach_keys = "ctrl-q,ctrl-e";
