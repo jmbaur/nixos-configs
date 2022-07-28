@@ -260,6 +260,7 @@ with lib; {
           terminal = "${pkgs.kitty}/bin/kitty";
           menu = "${pkgs.bemenu}/bin/bemenu-run";
           modifier = "Mod4";
+          workspaceLayout = "stacking";
           workspaceAutoBackAndForth = true;
           defaultWorkspace = "workspace number 1";
           focus.forceWrapping = true;
