@@ -87,15 +87,6 @@ with lib;
     fonts.fonts = [ pkgs.iosevka-bin ];
 
     programs.ssh.startAgent = true;
-    programs.zsh = {
-      enable = true;
-      interactiveShellInit = ''
-        bindkey -e
-        bindkey \^U backward-kill-line
-        precmd () { print -Pn "\e]0;%~\a" }
-      '';
-    };
-    environment.systemPackages = [ pkgs.zsh-completions ];
 
     services.avahi.enable = true;
     services.pcscd.enable = true;

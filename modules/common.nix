@@ -26,6 +26,15 @@ with lib;
       ];
     };
 
+    programs.zsh = {
+      enable = true;
+      interactiveShellInit = ''
+        bindkey -e
+        bindkey \^U backward-kill-line
+        precmd () { print -Pn "\e]0;%~\a" }
+      '';
+    };
+    environment.systemPackages = [ pkgs.zsh-completions ];
 
     nix = {
       settings.trusted-users = [ "@wheel" ];

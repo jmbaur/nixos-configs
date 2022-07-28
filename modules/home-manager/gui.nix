@@ -12,8 +12,6 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    programs.bash.enable = true;
-
     home.sessionVariables = {
       BEMENU_OPTS = "--ignorecase --fn Iosevka --line-height ${toString bemenuHeight}";
     };
