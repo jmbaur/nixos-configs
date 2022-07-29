@@ -97,8 +97,6 @@ with lib; {
         bind-key J command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
         bind-key j display-popup -E -w 90% "${pkgs.j}/bin/j"
         set-option -g focus-events on
-        set-option -g lock-after-time 3600
-        set-option -g lock-command ${pkgs.vlock}/bin/vlock
         set-option -g renumber-windows on
         set-option -g set-clipboard on
         set-option -g set-titles on
