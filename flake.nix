@@ -4,9 +4,8 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.05";
     flake-utils.url = "github:numtide/flake-utils";
-    deploy-rs.url = "github:serokell/deploy-rs";
     deadnix.url = "github:astro/deadnix";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-22.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     git-get.url = "github:jmbaur/git-get";
     git-get.inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +30,6 @@
       ];
       nixpkgs.overlays = [
         deadnix.overlays.default
-        deploy-rs.overlay
         git-get.overlays.default
         gobar.overlays.default
         gosee.overlays.default

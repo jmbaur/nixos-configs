@@ -22,7 +22,7 @@ with lib;
       uid = 2000;
       isNormalUser = true;
       description = "Deployer";
-      packages = [ pkgs.deploy-rs.deploy-rs ];
+      packages = [ pkgs.deploy-rs ];
       openssh.authorizedKeys.keyFiles = cfg.authorizedKeyFiles;
     };
     system.activationScripts.deployer.text = ''
