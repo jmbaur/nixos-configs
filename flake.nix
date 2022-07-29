@@ -2,8 +2,7 @@
   description = "NixOS configs";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nixpkgs.url = "nixpkgs/nixos-22.05";
     flake-utils.url = "github:numtide/flake-utils";
     deploy-rs.url = "github:serokell/deploy-rs";
     deadnix.url = "github:astro/deadnix";
@@ -19,41 +18,27 @@
     neovim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-wayland
-    , flake-utils
-    , deploy-rs
-    , git-get
-    , gobar
-    , gosee
-    , neovim
-    , deadnix
-    , home-manager
-    , ...
-    }: flake-utils.lib.eachDefaultSystem
-      (system:
+  outputs = inputs: with inputs; flake-utils.lib.eachDefaultSystem
+    (system:
       let
         pkgs = import nixpkgs { inherit system; };
       in
       { formatter = pkgs.nixpkgs-fmt; }) // {
-      nixosModules.default = {
-        imports = [
-          home-manager.nixosModules.home-manager
-          ./modules
-        ];
-        nixpkgs.overlays = [
-          deadnix.overlays.default
-          deploy-rs.overlay
-          git-get.overlays.default
-          gobar.overlays.default
-          gosee.overlays.default
-          neovim.overlays.default
-          nixpkgs-wayland.overlays.default
-          self.overlays.default
-        ];
-      };
-      overlays.default = import ./overlays;
+    nixosModules.default = {
+      imports = [
+        home-manager.nixosModules.home-manager
+        ./modules
+      ];
+      nixpkgs.overlays = [
+        deadnix.overlays.default
+        deploy-rs.overlay
+        git-get.overlays.default
+        gobar.overlays.default
+        gosee.overlays.default
+        neovim.overlays.default
+        self.overlays.default
+      ];
     };
+    overlays.default = import ./overlays;
+  };
 }
