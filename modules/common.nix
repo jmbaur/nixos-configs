@@ -140,8 +140,6 @@ with lib;
       extraConfig = ''
         bind-key C-l lock-session
         set-option -g focus-events on
-        set-option -g lock-after-time 3600
-        set-option -g lock-command ${pkgs.vlock}/bin/vlock
         set-option -g set-clipboard on
         set-option -sa terminal-overrides ',xterm-256color:RGB'
       '';
