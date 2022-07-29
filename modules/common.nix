@@ -134,9 +134,11 @@ with lib;
     programs.tmux = {
       enable = true;
       terminal = "screen-256color";
+      escapeTime = 10;
       clock24 = true;
       baseIndex = 1;
       keyMode = "vi";
+      shortcut = if config.custom.gui.enable then "s" else "a";
       extraConfig = ''
         bind-key C-l lock-session
         set-option -g focus-events on

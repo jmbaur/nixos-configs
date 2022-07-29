@@ -90,7 +90,7 @@ with lib; {
       escapeTime = 10;
       keyMode = "vi";
       plugins = with pkgs.tmuxPlugins; [ logging ];
-      prefix = "C-s";
+      prefix = if config.custom.gui.enable then "C-s" else "C-a";
       terminal = "screen-256color";
       extraConfig = ''
         bind-key C-l lock-session
