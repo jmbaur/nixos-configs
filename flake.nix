@@ -2,10 +2,10 @@
   description = "NixOS configs";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.05";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     deadnix.url = "github:astro/deadnix";
-    home-manager.url = "github:nix-community/home-manager/release-22.05";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     git-get.url = "github:jmbaur/git-get";
     git-get.inputs.nixpkgs.follows = "nixpkgs";
